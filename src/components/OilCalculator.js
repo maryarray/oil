@@ -43,7 +43,7 @@ const OilCalculator = () => {
     setResults(results);
   };
   return (
-    <div>
+    <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
       <h2>Oil Calculation Results</h2>
       <div>
       <label>
@@ -55,6 +55,7 @@ const OilCalculator = () => {
           max="35" // Adjust the max value as needed
           step="0.1"
           value={currentPrice}
+          style={{ width: '300px', display: 'block' }}
           onChange={(e) => setCurrentPrice(parseFloat(e.target.value))}
         />
       </div>
