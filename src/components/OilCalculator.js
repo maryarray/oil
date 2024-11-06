@@ -24,9 +24,8 @@ const OilCalculator = () => {
             localResults.push({
               condition: curMaxDiff < realPrice - payPrice,
               curMaxDiff: `${curMaxDiff} = ${realPrice} - ${payPrice}`,
-              amount: `Amount: ${cummulateAmount} ${realPrice} - ${payPrice} = ${
-                realPrice - payPrice
-              }`,
+              amount: `Amount: ${cummulateAmount} `,
+              detail: `${realPrice} - ${payPrice} = ${realPrice - payPrice}`
             });
             curMaxDiff = realPrice - payPrice;
           }
@@ -64,8 +63,9 @@ const OilCalculator = () => {
           <li key={index}>
             {result.condition ? (
               <>
-                <p>{result.curMaxDiff}</p>
+                {/* <p>{result.curMaxDiff}</p> */}
                 <p>{result.amount}</p>
+                <p>{result.detail}</p>
               </>
             ) : null}
           </li>
