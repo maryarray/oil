@@ -6,6 +6,7 @@ const OilCalculator = () => {
   const [minAmount, setMinAmount] = useState(0.3); // Default value
   // const [maxAmount, setMaxAmount] = useState(7.0); // Default value
   let maxAmount = minAmount+2
+  let selfHelpDiscount = 0.8 // NTD
   useEffect(() => {
     const oilCal = () => {
       let cummulateDiff = 0.01;
@@ -14,9 +15,14 @@ const OilCalculator = () => {
       const localResults = [];
 
       while (cummulateAmount < maxAmount) {
-        cummulateAmount =
-          Math.round((cummulateAmount + cummulateDiff) * 100) / 100;
-        let realPrice = cummulateAmount * currentPrice;
+        cummulateAmount = Math.round((cummulateAmount + cummulateDiff) * 100) / 100;
+        let realPrice
+        if (cummulateAmount>1.0){
+          realPrice = cummulateAmount * (currentPrice-selfHelpDiscount);
+        }else{
+          realPrice = cummulateAmount * currentPrice;
+
+        }
         let payPrice = Math.round(realPrice);
         let maxDiff = 0;
 
