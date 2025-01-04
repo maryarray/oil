@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 const OilCalculator = () => {
   const [results, setResults] = useState([]);
   const [currentPrice, setCurrentPrice] = useState(29.9); // Default value
-  let minAmount = 0.3
-  let maxAmount = 1.0
+  const [minAmount, setMinAmount] = useState(0.3); // Default value
+  // const [maxAmount, setMaxAmount] = useState(7.0); // Default value
+  let maxAmount = minAmount+2
   useEffect(() => {
     const oilCal = () => {
       let cummulateDiff = 0.01;
@@ -37,14 +38,14 @@ const OilCalculator = () => {
     const results = oilCal();
     
     setResults(results);
-  }, [currentPrice]);
+  }, [currentPrice, minAmount]);
   const handleCalculate = () => {
     setResults(results);
   };
   return (
     <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
       <h2>Oil Calculation Results</h2>
-      <div>
+      <div style={{margin:"20px"}}>
       <label>
           Current Price: ${currentPrice.toFixed(2)}
         </label>
@@ -54,8 +55,22 @@ const OilCalculator = () => {
           max="35" // Adjust the max value as needed
           step="0.1"
           value={currentPrice}
-          style={{ width: '300px', display: 'block' }}
+          style={{ width: '300px', display: 'block'}}
           onChange={(e) => setCurrentPrice(parseFloat(e.target.value))}
+        />
+      </div>
+      <div style={{margin:"20px"}}>
+      <label>
+          minAmount: {minAmount.toFixed(2)}L
+        </label>
+      <input
+          type="range"
+          min="0"
+          max="30" // Adjust the max value as needed
+          step="0.1"
+          value={minAmount}
+          style={{ width: '300px', display: 'block' }}
+          onChange={(e) => setMinAmount(parseFloat(e.target.value))}
         />
       </div>
       <ul>
